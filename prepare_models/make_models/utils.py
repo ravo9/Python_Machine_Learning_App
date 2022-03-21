@@ -53,28 +53,28 @@ def get_average_error_direction_prediction(predictions, y_test):
     # - * + = -  -> BAD
     # + * + = +  -> GOOD
 
-    changes_predictions = []
+    changes_predicted = []
     changes_real = []
 
     for i in range(0, len(predictions)):
         if i != 0:
             change_predicted = predictions[i] - predictions[i - 1]
             change_real = y_test[i] - y_test[i - 1]
-            changes_predictions.append(change_predicted)
+            changes_predicted.append(change_predicted)
             changes_real.append(change_real)
 
-    multiplied_array = np.asarray(changes_predictions) * np.asarray(changes_real)
+    multiplied_array = np.asarray(changes_predicted) * np.asarray(changes_real)
     all_values_amount = len(multiplied_array)
     well_predicted_values = 0
     for value in multiplied_array:
         if value > 0:
             well_predicted_values += 1
 
-    print("TESTO 1")
+    print("Direction predicting results: all values amount:")
     print(all_values_amount)
-    print("TESTO 2")
+    print("Direction predicting results: well predicted values amount:")
     print(well_predicted_values)
-    print("TESTO 3")
+    print("Direction predicting results: well predicted values percentage:")
     print(well_predicted_values/all_values_amount)
 
     return well_predicted_values/all_values_amount

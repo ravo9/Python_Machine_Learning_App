@@ -7,8 +7,6 @@ plaidml.keras.install_backend()
 os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 
 # GPU support stuff
-# import tensorflow as tf
-# from tensorflow import keras
 import keras
 from keras import layers
 
@@ -21,11 +19,7 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout, LeakyReLU
 from keras.optimizers import Adam
-import matplotlib.pyplot as plt
-import fileinput
-import sys
 import random
-from pathlib import Path
 from utils import get_average_error, print_average_error, print_rmse, save_model, write_average_into_txt_log, write_model_creation_details_into_csv_log
 
 # GPU support stuff

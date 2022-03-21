@@ -7,9 +7,9 @@ OPTIMIZER_TYPE_ADAM = 'adam'
 # Machine Learning Selected Parameters
 optimizer_type = OPTIMIZER_TYPE_ADAM
 loss_function_type = LOSS_FUNCTION_TYPE_MEAN_ABSOLUTE_ERROR
-days_into_account = [25]
-epochs_amount = [2]
-random_seed = [2131]
+days_into_account = [45]
+epochs_amount = [6]
+random_seed = [3131]
 optimizer_learning_rate = [0.001]
 
 

@@ -1,6 +1,6 @@
 # Data Selected Parameters
 columns = ['Close']
-start_train_date='2010-09-15'
+start_train_date='2015-09-15'
 end_train_date='2020-07-24'
 start_test_date='2020-06-27'
 end_test_date='2020-11-25'

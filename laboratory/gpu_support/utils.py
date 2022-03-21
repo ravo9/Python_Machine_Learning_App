@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
-
-import tensorflow as tf
 from tensorflow import keras
 import math
 import pandas_datareader as web
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Dropout, LeakyReLU
-from tensorflow.keras.optimizers import Adam
+from keras.layers import Dense, LSTM, Dropout, LeakyReLU
 import matplotlib.pyplot as plt
 import fileinput
 import sys

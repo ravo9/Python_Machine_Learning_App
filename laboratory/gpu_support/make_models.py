@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-# import tensorflow as tf
-# from tensorflow import keras
 
 # GPU support stuff
 import os
@@ -13,16 +9,7 @@ os.environ["KERAS_BACKEND"] = "plaidml.keras.backend"
 import keras
 from keras import layers
 
-import math
-import pandas_datareader as web
-import numpy as np
-from numpy import concatenate
-import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
-from keras.models import Sequential
-from keras.layers import Dense, LSTM, Dropout, LeakyReLU
 from keras.optimizers import Adam
-import matplotlib.pyplot as plt
 import fileinput
 import sys
 from utils import check_if_txt_log_exists, check_if_csv_log_exists, write_opening_separator_into_txt_log, write_closing_separator_into_txt_log, get_real_average_change_of_test_period
@@ -36,10 +23,9 @@ K
 # Data Parameters
 columns = ['Close']
 start_train_date='2015-09-15'
-# start_train_date='2010-09-15'
-end_train_date='2020-07-12'
-start_test_date='2020-05-15'
-end_test_date='2020-11-13'
+end_train_date='2020-07-24'
+start_test_date='2020-06-27'
+end_test_date='2020-11-25'
 instrument = 'GBPUSD=X'
 
 # Files System Parameters
@@ -50,14 +36,14 @@ average_required_for_model_to_be_saved = 26000.0
 optimizer_type = 'adam'
 # loss_function_type = 'mean_squared_error'
 loss_function_type = 'mean_absolute_error'
-days_into_account = [30]
-epochs_amount = [1]
-random_seed = [200, 500, 1000, 2000, 3000]
+days_into_account = [45]
+epochs_amount = [6]
+random_seed = [3131]
 optimizer_learning_rate = [0.001]
 
 # Multiple Build Params
 amount_of_models_per_one_setting = 1
-sleep_the_computer_when_the_work_is_done = True
+sleep_the_computer_when_the_work_is_done = False
 
 
 # Main function
