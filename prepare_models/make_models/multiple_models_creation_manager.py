@@ -16,6 +16,7 @@ def start_creation_of_machine_learning_models(
     time_of_waiting_after_unsuccessful_model_creation_in_seconds = config_multiple_models_creation_process_parameters["time_of_waiting_after_unsuccessful_model_creation_in_seconds"]
 
     all_models_amount = len(config_data_parameters) * len(config_machine_learning_parameters) * amount_of_models_per_one_setting
+    current_model = 0
 
     write_opening_separator_into_txt_log(output_dir)
 
@@ -23,7 +24,8 @@ def start_creation_of_machine_learning_models(
         for config_machineLearning in config_machine_learning_parameters:
             for i in range(amount_of_models_per_one_setting):
 
-                print_currently_making_model_info(i, all_models_amount)
+                current_model = current_model + 1
+                print_currently_making_model_info(current_model, all_models_amount)
 
                 is_making_model_finished_successfully = False
                 while is_making_model_finished_successfully is False:

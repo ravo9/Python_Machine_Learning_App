@@ -4,7 +4,7 @@ start_train_date='2015-09-15'
 end_train_date='2020-07-24'
 start_test_date='2020-06-27'
 end_test_date='2020-11-25'
-instrument = 'GBPUSD=X'
+instrument = 'AAPL'
 
 
 def get_config_data_parameters_many():

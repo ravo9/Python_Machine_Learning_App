@@ -11,23 +11,23 @@ def get_real_average_change_of_test_period(
 
     # 1. Get values.
     # Get the data
-    dfTest = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
+    df_test = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
     # Create a new dataframe with only our column
-    data_test = dfTest.filter([column])
+    data_test = df_test.filter([column])
     # Convert the dataframe to Numpy array
-    datasetTest = data_test.values
+    dataset_test = data_test.values
 
     # 2. Remove first n days from the beginning.
-    datasetTest = datasetTest[days_into_account:]
+    dataset_test = dataset_test[days_into_account:]
 
     # 3. Get their daily abs changes.
-    dailyChanges = []
-    for i in range(0, len(datasetTest)):
+    daily_changes = []
+    for i in range(0, len(dataset_test)):
         if i != 0:
-            dailyChanges.append(abs(datasetTest[i] - datasetTest[i-1]))
+            daily_changes.append(abs(dataset_test[i] - dataset_test[i-1]))
 
     # 4. Get and print the average of daily abs changes.
-    average = np.average(dailyChanges)
+    average = np.average(daily_changes)
     print("")
     print("------------------")
     print("REAL AVERAGE DAILY CHANGE:")
@@ -69,13 +69,6 @@ def get_average_error_direction_prediction(predictions, y_test):
     for value in multiplied_array:
         if value > 0:
             well_predicted_values += 1
-
-    print("Direction predicting results: all values amount:")
-    print(all_values_amount)
-    print("Direction predicting results: well predicted values amount:")
-    print(well_predicted_values)
-    print("Direction predicting results: well predicted values percentage:")
-    print(well_predicted_values/all_values_amount)
 
     return well_predicted_values/all_values_amount
 

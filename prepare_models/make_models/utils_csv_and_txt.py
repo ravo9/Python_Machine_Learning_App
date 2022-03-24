@@ -29,10 +29,10 @@ def write_closing_separator_into_txt_log(output_dir):
         f.write("-------------------------")
 
 
-def write_average_into_txt_log(output_dir, average_error):
+def write_result_into_txt_log(output_dir, value):
     check_if_txt_log_exists(output_dir)
     with open((output_dir + 'log.txt'),'a') as f:
-        f.write(str(average_error) + '\n')
+        f.write(str(value) + '\n')
 
 
 def write_model_creation_details_into_csv_log(

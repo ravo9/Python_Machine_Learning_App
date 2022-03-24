@@ -3,13 +3,13 @@ import pandas_datareader as web
 import numpy as np
 import random
 from numpy import concatenate
-from tensorflow import keras
+# from tensorflow import keras
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout, LeakyReLU
 from tensorflow.keras.optimizers import Adam
 from utils import get_average_error, get_average_error_direction_prediction, print_average_error, print_rmse, save_model
-from utils_csv_and_txt import write_average_into_txt_log, write_model_creation_details_into_csv_log
+from utils_csv_and_txt import write_result_into_txt_log, write_model_creation_details_into_csv_log
 
 
 def make_multiple_variable_model(
@@ -43,16 +43,16 @@ def make_multiple_variable_model(
 
     # Get the data
     dfTrain = web.DataReader(instrument, data_source='yahoo', start=start_train_date, end=end_train_date)
-    dfTest = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
+    df_test = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
 
     # Create a new dataframe with only our column (and convert it to Numpy array)
     datasetTrain = dfTrain.filter(columns).values
-    datasetTest = dfTest.filter(columns).values
+    dataset_test = df_test.filter(columns).values
 
     # Scale the data
     scaler = MinMaxScaler(feature_range=(0,1))
     scaled_train_data = scaler.fit_transform(datasetTrain)
-    scaled_test_data = scaler.fit_transform(datasetTest)
+    scaled_test_data = scaler.fit_transform(dataset_test)
 
     # Split the data into x_train and y_train datasets
     x_train = []
@@ -121,13 +121,17 @@ def make_multiple_variable_model(
     predictions = scaler.inverse_transform(predictions)
 
     # Fix line
-    y_test = datasetTest[days_into_account:, :]
+    y_test = dataset_test[days_into_account:, :]
 
     average_error = get_average_error(predictions[:,0], y_test[:,0])
     print_average_error(average_error)
     print_rmse(predictions, y_test)
 
-    get_average_error_direction_prediction(predictions[:,0], y_test[:,0])
+    direction_prediction_result = get_average_error_direction_prediction(predictions[:,0], y_test[:,0])
+    write_result_into_txt_log(output_dir, direction_prediction_result)
+    
+    print("Direction predicting results: well predicted values percentage:")
+    print(direction_prediction_result)
 
     save_model(model, output_dir, average_error)
 
@@ -147,5 +151,3 @@ def make_multiple_variable_model(
         average_error,
         random_seed,
         optimizer_learning_rate)
-
-    write_average_into_txt_log(output_dir, average_error)

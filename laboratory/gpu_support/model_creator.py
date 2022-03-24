@@ -20,7 +20,7 @@ from keras.models import Sequential
 from keras.layers import Dense, LSTM, Dropout, LeakyReLU
 from keras.optimizers import Adam
 import random
-from utils import get_average_error, print_average_error, print_rmse, save_model, write_average_into_txt_log, write_model_creation_details_into_csv_log
+from utils import get_average_error, print_average_error, print_rmse, save_model, write_result_into_txt_log, write_model_creation_details_into_csv_log
 
 # GPU support stuff
 import keras
@@ -50,20 +50,20 @@ def makeMultipleVariableModel(
 
     # Get the data
     dfTrain = web.DataReader(instrument, data_source='yahoo', start=start_train_date, end=end_train_date)
-    dfTest = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
+    df_test = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
 
     # Create a new dataframe with only our column
     dataTrain = dfTrain.filter(columns)
-    data_test = dfTest.filter(columns)
+    data_test = df_test.filter(columns)
 
     # Convert the dataframe to Numpy array
     datasetTrain = dataTrain.values
-    datasetTest = data_test.values
+    dataset_test = data_test.values
 
     # Scale the data
     scaler = MinMaxScaler(feature_range=(0,1))
     scaled_train_data = scaler.fit_transform(datasetTrain)
-    scaled_test_data = scaler.fit_transform(datasetTest)
+    scaled_test_data = scaler.fit_transform(dataset_test)
 
     # Split the data into x_train and y_train datasets
     x_train = []
@@ -136,7 +136,7 @@ def makeMultipleVariableModel(
     predictions = scaler.inverse_transform(predictions)
 
     # Fix line
-    y_test = datasetTest[days_into_account:, :]
+    y_test = dataset_test[days_into_account:, :]
 
     average_error = get_average_error(predictions[:,0], y_test[:,0])
     print_average_error(average_error)
@@ -161,4 +161,4 @@ def makeMultipleVariableModel(
         random_seed,
         optimizer_learning_rate)
 
-    write_average_into_txt_log(output_dir, average_error)
+    write_result_into_txt_log(output_dir, average_error)

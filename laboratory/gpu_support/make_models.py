@@ -26,7 +26,7 @@ start_train_date='2015-09-15'
 end_train_date='2020-07-24'
 start_test_date='2020-06-27'
 end_test_date='2020-11-25'
-instrument = 'GBPUSD=X'
+instrument = 'AAPL'
 
 # Files System Parameters
 output_dir = 'many_models_creation_output/'
@@ -36,9 +36,9 @@ average_required_for_model_to_be_saved = 26000.0
 optimizer_type = 'adam'
 # loss_function_type = 'mean_squared_error'
 loss_function_type = 'mean_absolute_error'
-days_into_account = [45]
-epochs_amount = [6]
-random_seed = [3131]
+days_into_account = [15, 30, 45]
+epochs_amount = [6, 8]
+random_seed = [3131, 23213]
 optimizer_learning_rate = [0.001]
 
 # Multiple Build Params
