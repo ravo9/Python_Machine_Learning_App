@@ -4,3 +4,5 @@
 *.pyc
 
 *.DS_Store
+
+prepare_models/make_models/models_creation_output/*
