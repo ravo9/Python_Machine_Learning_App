@@ -79,19 +79,10 @@ def make_multiple_variable_model(
     model.add(Dense(25))
     model.add(Dense(1))
 
-    # model = Sequential()
-    # model.add(Dense(90))
-    # model.add(LSTM(50, return_sequences=False, input_shape=(x_train.shape[1], 1)))
-    # model.add(Dense(1))
-
     # units = 128
-    # learningRate = 0.01
-    # optimizer = Adam(lr=learningRate)
-    # model = Sequential()
     # model.add(LSTM(units, input_shape=(x_train.shape[1], 1)))
     # model.add(LeakyReLU(alpha=0.5))
     # model.add(Dropout(0.1))
-    # model.add(Dense(1))
 
     # Compile the model
     optimizer = Adam(learning_rate=optimizer_learning_rate)
@@ -129,7 +120,7 @@ def make_multiple_variable_model(
 
     direction_prediction_result = get_average_error_direction_prediction(predictions[:,0], y_test[:,0])
     write_result_into_txt_log(output_dir, direction_prediction_result)
-    
+
     print("Direction predicting results: well predicted values percentage:")
     print(direction_prediction_result)
 

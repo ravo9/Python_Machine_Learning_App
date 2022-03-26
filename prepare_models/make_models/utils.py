@@ -95,7 +95,7 @@ def print_rmse(predictions, y_test):
 
 
 def print_currently_making_model_info(index, all_models_amount):
-    print("Making model number " + str(index+1) + " out of " + str(all_models_amount))
+    print("Making model number " + str(index) + " out of " + str(all_models_amount))
 
 
 def print_model_creation_interrupted_error(error, waiting_time):
