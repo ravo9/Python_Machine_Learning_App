@@ -30,7 +30,43 @@ def start_creation_of_machine_learning_models(
                 is_making_model_finished_successfully = False
                 while is_making_model_finished_successfully is False:
                     try:
-                        make_multiple_variable_model(config_data, config_machineLearning, config_multiple_models_creation_process_parameters)
+
+                        # Unpack config_data_parameters
+                        columns = config_data["columns"]
+                        start_train_date = config_data["start_train_date"]
+                        end_train_date = config_data["end_train_date"]
+                        start_test_date = config_data["start_test_date"]
+                        end_test_date = config_data["end_test_date"]
+                        instrument = config_data["instrument"]
+
+                        # Unpack config_machine_learning_parameters
+                        optimizer_type = config_machineLearning["optimizer_type"]
+                        loss_function_type = config_machineLearning["loss_function_type"]
+                        days_into_account = config_machineLearning["days_into_account"]
+                        epochs_amount = config_machineLearning["epochs_amount"]
+                        random_seed = config_machineLearning["random_seed"]
+                        optimizer_learning_rate = config_machineLearning["optimizer_learning_rate"]
+
+                        # Unpack config_multiple_models_creation_process_parameters
+                        output_dir = config_multiple_models_creation_process_parameters["output_dir"]
+                        average_required_for_model_to_be_saved = config_multiple_models_creation_process_parameters["average_required_for_model_to_be_saved"]
+
+                        make_multiple_variable_model(
+                            columns,
+                            start_train_date,
+                            end_train_date,
+                            start_test_date,
+                            end_test_date,
+                            instrument,
+                            optimizer_type,
+                            loss_function_type,
+                            days_into_account,
+                            epochs_amount,
+                            random_seed,
+                            optimizer_learning_rate,
+                            output_dir,
+                            average_required_for_model_to_be_saved)
+
                         is_making_model_finished_successfully = True
                     except Exception as e:
                         print_model_creation_interrupted_error(e, time_of_waiting_after_unsuccessful_model_creation_in_seconds)

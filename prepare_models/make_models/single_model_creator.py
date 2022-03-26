@@ -3,7 +3,6 @@ import pandas_datareader as web
 import numpy as np
 import random
 from numpy import concatenate
-# from tensorflow import keras
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout, LeakyReLU
@@ -13,30 +12,24 @@ from utils_csv_and_txt import write_result_into_txt_log, write_model_creation_de
 
 
 def make_multiple_variable_model(
-    config_data_parameters,
-    config_machine_learning_parameters,
-    config_multiple_models_creation_process_parameters
+    columns,
+    start_train_date,
+    end_train_date,
+    start_test_date,
+    end_test_date,
+    instrument,
+    optimizer_type,
+    loss_function_type,
+    days_into_account,
+    epochs_amount,
+    random_seed,
+    optimizer_learning_rate,
+    output_dir,
+    average_required_for_model_to_be_saved,
+    layer_1_neurones_number = 50,
+    layer_2_neurones_number = 50,
+    layer_3_neurones_number = 25,
     ):
-
-    # Unpack config_data_parameters
-    columns = config_data_parameters["columns"]
-    start_train_date = config_data_parameters["start_train_date"]
-    end_train_date = config_data_parameters["end_train_date"]
-    start_test_date = config_data_parameters["start_test_date"]
-    end_test_date = config_data_parameters["end_test_date"]
-    instrument = config_data_parameters["instrument"]
-
-    # Unpack config_machine_learning_parameters
-    optimizer_type = config_machine_learning_parameters["optimizer_type"]
-    loss_function_type = config_machine_learning_parameters["loss_function_type"]
-    days_into_account = config_machine_learning_parameters["days_into_account"]
-    epochs_amount = config_machine_learning_parameters["epochs_amount"]
-    random_seed = config_machine_learning_parameters["random_seed"]
-    optimizer_learning_rate = config_machine_learning_parameters["optimizer_learning_rate"]
-
-    # Unpack config_multiple_models_creation_process_parameters
-    output_dir = config_multiple_models_creation_process_parameters["output_dir"]
-    average_required_for_model_to_be_saved = config_multiple_models_creation_process_parameters["average_required_for_model_to_be_saved"]
 
     # Introduce the model
     modelConcept = 'multiple_variable_model'
@@ -74,9 +67,9 @@ def make_multiple_variable_model(
 
     # Build the LSTM model
     model = Sequential()
-    model.add(LSTM(50, return_sequences=True, input_shape=(x_train.shape[1], x_train.shape[2])))
-    model.add(LSTM(50, return_sequences=False))
-    model.add(Dense(25))
+    model.add(LSTM(layer_1_neurones_number, return_sequences=True, input_shape=(x_train.shape[1], x_train.shape[2])))
+    model.add(LSTM(layer_2_neurones_number, return_sequences=False))
+    model.add(Dense(layer_3_neurones_number))
     model.add(Dense(1))
 
     # units = 128
@@ -124,7 +117,7 @@ def make_multiple_variable_model(
     print("Direction predicting results: well predicted values percentage:")
     print(direction_prediction_result)
 
-    save_model(model, output_dir, average_error)
+    # save_model(model, output_dir, average_error)
 
     write_model_creation_details_into_csv_log(
         modelConcept,
@@ -142,3 +135,8 @@ def make_multiple_variable_model(
         average_error,
         random_seed,
         optimizer_learning_rate)
+
+    # Todo: Improve.
+    # score = 1 / average_error
+    score = direction_prediction_result
+    return score
