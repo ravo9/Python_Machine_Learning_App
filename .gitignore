@@ -3,6 +3,8 @@
 
 ./*.pyc
 
+./*.cpython-38
+
 ./*.cpython-38.pyc
 
 ./*.DS_Store
