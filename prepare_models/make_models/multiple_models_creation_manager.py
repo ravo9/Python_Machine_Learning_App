@@ -1,8 +1,8 @@
 import os
 import time
-from utils_csv_and_txt import write_opening_separator_into_txt_log, write_closing_separator_into_txt_log
-from single_model_creator import make_multiple_variable_model
-from utils import print_currently_making_model_info, print_model_creation_interrupted_error
+# from utils_csv_and_txt import write_opening_separator_into_txt_log, write_closing_separator_into_txt_log
+# from single_model_creator import make_multiple_variable_model
+# from utils import print_currently_making_model_info, print_model_creation_interrupted_error
 
 
 def start_creation_of_machine_learning_models(
@@ -76,5 +76,5 @@ def start_creation_of_machine_learning_models(
     write_closing_separator_into_txt_log(output_dir)
 
     # Run the whole script as sudo to let it work.
-    if sleep_the_computer_when_the_work_is_done:
-        os.system('shutdown -s now')
+    # if sleep_the_computer_when_the_work_is_done:
+    #     os.system('shutdown -s now')

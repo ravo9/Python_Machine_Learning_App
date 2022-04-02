@@ -7,8 +7,8 @@ from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout, LeakyReLU
 from tensorflow.keras.optimizers import Adam
-from utils import get_average_error, get_average_error_direction_prediction, print_average_error, print_rmse, save_model
-from utils_csv_and_txt import write_result_into_txt_log, write_model_creation_details_into_csv_log
+# from utils import get_average_error, get_average_error_direction_prediction, print_average_error, print_rmse, save_model
+# from utils_csv_and_txt import write_result_into_txt_log, write_model_creation_details_into_csv_log
 
 
 def make_multiple_variable_model(
