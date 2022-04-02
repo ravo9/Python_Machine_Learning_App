@@ -28,7 +28,8 @@ def make_multiple_variable_model(
     average_required_for_model_to_be_saved,
     layer_1_neurones_number = 50,
     layer_2_neurones_number = 50,
-    layer_3_neurones_number = 25,
+    layer_3_neurones_number = 50,
+    layer_4_neurones_number = 25,
     ):
 
     # Introduce the model
@@ -68,8 +69,9 @@ def make_multiple_variable_model(
     # Build the LSTM model
     model = Sequential()
     model.add(LSTM(layer_1_neurones_number, return_sequences=True, input_shape=(x_train.shape[1], x_train.shape[2])))
-    model.add(LSTM(layer_2_neurones_number, return_sequences=False))
-    model.add(Dense(layer_3_neurones_number))
+    model.add(LSTM(layer_2_neurones_number, return_sequences=True))
+    model.add(LSTM(layer_3_neurones_number, return_sequences=False))
+    model.add(Dense(layer_4_neurones_number))
     model.add(Dense(1))
 
     # units = 128
