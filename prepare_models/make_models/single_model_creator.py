@@ -22,14 +22,14 @@ def make_multiple_variable_model(
     loss_function_type,
     days_into_account,
     epochs_amount,
+    batch_size,
     random_seed,
     optimizer_learning_rate,
     output_dir,
     average_required_for_model_to_be_saved,
     layer_1_neurones_number = 50,
     layer_2_neurones_number = 50,
-    layer_3_neurones_number = 50,
-    layer_4_neurones_number = 25,
+    layer_3_neurones_number = 50
     ):
 
     # Introduce the model
@@ -39,7 +39,13 @@ def make_multiple_variable_model(
     dfTrain = web.DataReader(instrument, data_source='yahoo', start=start_train_date, end=end_train_date)
     df_test = web.DataReader(instrument, data_source='yahoo', start=start_test_date, end=end_test_date)
 
+    # print("")
+    # print("TESTO A")
+    # print(dfTrain)
+    # print("")
+
     # Create a new dataframe with only our column (and convert it to Numpy array)
+    # This has to be 2D array as scaler requires that.
     datasetTrain = dfTrain.filter(columns).values
     dataset_test = df_test.filter(columns).values
 
@@ -52,11 +58,12 @@ def make_multiple_variable_model(
     x_train = []
     y_train = []
 
+    # The '0' at the end is to make it 1D array (no reason for 2D)
     for i in range(days_into_account, len(scaled_train_data)):
-      x_train.append(scaled_train_data[i-days_into_account:i])
+      x_train.append(scaled_train_data[i-days_into_account:i, 0])
       y_train.append(scaled_train_data[i, 0])
 
-    # Convert the x_train and y_train into Numpy arrays
+    # Convert the x_train and y_train into Numpy arrays (to simplify array in array)
     x_train, y_train = np.array(x_train), np.array(y_train)
 
     # Reshape the data for LSTM
@@ -69,9 +76,8 @@ def make_multiple_variable_model(
     # Build the LSTM model
     model = Sequential()
     model.add(LSTM(layer_1_neurones_number, return_sequences=True, input_shape=(x_train.shape[1], x_train.shape[2])))
-    model.add(LSTM(layer_2_neurones_number, return_sequences=True))
-    model.add(LSTM(layer_3_neurones_number, return_sequences=False))
-    model.add(Dense(layer_4_neurones_number))
+    model.add(LSTM(layer_2_neurones_number, return_sequences=False))
+    model.add(Dense(layer_3_neurones_number))
     model.add(Dense(1))
 
     # units = 128
@@ -84,7 +90,7 @@ def make_multiple_variable_model(
     model.compile(optimizer=optimizer, loss=loss_function_type)
 
     # Train the model
-    model.fit(x_train, y_train, batch_size=1, epochs=epochs_amount)
+    model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs_amount)
 
     # Create the data sets x_test and y_test
     x_test = []

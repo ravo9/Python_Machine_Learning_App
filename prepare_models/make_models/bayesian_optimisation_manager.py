@@ -7,10 +7,10 @@ def start_bayesian_optimisation_analysis():
     params_nn ={
         # 'days_into_account':(5, 45),
         # 'epochs_amount':(2, 30),
-        'layer_1_neurones_number':(0, 150),
-        'layer_2_neurones_number':(0, 150),
-        'layer_3_neurones_number':(0, 150),
-        'layer_4_neurones_number':(0, 150)
+        # 'batch_size':(1, 20),
+        # 'layer_1_neurones_number':(0, 150),
+        # 'layer_2_neurones_number':(0, 150),
+        # 'layer_3_neurones_number':(0, 150),
         # 'optimizer_learning_rate':(0.0001, 0.01)
     }
 
@@ -23,12 +23,12 @@ def start_bayesian_optimisation_analysis():
 
 
 def runModelMaking(
-    layer_1_neurones_number,
-    layer_2_neurones_number,
-    layer_3_neurones_number,
-    layer_4_neurones_number
+    # layer_1_neurones_number,
+    # layer_2_neurones_number,
+    # layer_3_neurones_number,
     # days_into_account,
-    # epochs_amount
+    # epochs_amount,
+    # batch_size,
     # optimizer_learning_rate
     ):
 
@@ -45,6 +45,7 @@ def runModelMaking(
     loss_function_type = 'mean_absolute_error'
     days_into_account = 10
     epochs_amount = 6
+    batch_size = 1
     random_seed = 2323
     optimizer_learning_rate = 0.0009
 
@@ -53,16 +54,15 @@ def runModelMaking(
     average_required_for_model_to_be_saved = 0.0060
 
     # epochs_amount = int(epochs_amount)
+    # batch_size = int(batch_size)
     # days_into_account = int(days_into_account)
-    layer_1_neurones_number = int(layer_1_neurones_number)
-    layer_2_neurones_number = int(layer_2_neurones_number)
-    layer_3_neurones_number = int(layer_3_neurones_number)
-    layer_4_neurones_number = int(layer_4_neurones_number)
+    # layer_1_neurones_number = int(layer_1_neurones_number)
+    # layer_2_neurones_number = int(layer_2_neurones_number)
+    # layer_3_neurones_number = int(layer_3_neurones_number)
 
-    # layer_1_neurones_number = 18
-    # layer_2_neurones_number = 99
-    # layer_3_neurones_number = 37
-    # layer_4_neurones_number = ??
+    layer_1_neurones_number = 18
+    layer_2_neurones_number = 99
+    layer_3_neurones_number = 37
 
     score = make_multiple_variable_model(
         columns,
@@ -75,14 +75,14 @@ def runModelMaking(
         loss_function_type,
         days_into_account,
         epochs_amount,
+        batch_size,
         random_seed,
         optimizer_learning_rate,
         output_dir,
         average_required_for_model_to_be_saved,
         layer_1_neurones_number,
         layer_2_neurones_number,
-        layer_3_neurones_number,
-        layer_4_neurones_number
+        layer_3_neurones_number
         )
 
     print("SCORE: " + str(score))

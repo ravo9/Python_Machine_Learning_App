@@ -44,8 +44,12 @@ def start_creation_of_machine_learning_models(
                         loss_function_type = config_machineLearning["loss_function_type"]
                         days_into_account = config_machineLearning["days_into_account"]
                         epochs_amount = config_machineLearning["epochs_amount"]
+                        batch_size = config_machineLearning["batch_size"]
                         random_seed = config_machineLearning["random_seed"]
                         optimizer_learning_rate = config_machineLearning["optimizer_learning_rate"]
+                        layer_1_neurones_number = config_machineLearning["layer_1_neurones_number"]
+                        layer_2_neurones_number = config_machineLearning["layer_2_neurones_number"]
+                        layer_3_neurones_number = config_machineLearning["layer_3_neurones_number"]
 
                         # Unpack config_multiple_models_creation_process_parameters
                         output_dir = config_multiple_models_creation_process_parameters["output_dir"]
@@ -62,10 +66,14 @@ def start_creation_of_machine_learning_models(
                             loss_function_type,
                             days_into_account,
                             epochs_amount,
+                            batch_size,
                             random_seed,
                             optimizer_learning_rate,
                             output_dir,
-                            average_required_for_model_to_be_saved)
+                            average_required_for_model_to_be_saved,
+                            layer_1_neurones_number,
+                            layer_2_neurones_number,
+                            layer_3_neurones_number)
 
                         is_making_model_finished_successfully = True
                     except Exception as e:

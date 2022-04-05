@@ -16,10 +16,10 @@ config_data_parameters = get_config_data_parameters_many()
 config_machine_learning_parameters = get_config_machine_learning_parameters_many()
 config_multiple_models_creation_process_parameters = get_config_multiple_models_creation_process_parameters()
 
-# start_creation_of_machine_learning_models(
-#     config_data_parameters,
-#     config_machine_learning_parameters,
-#     config_multiple_models_creation_process_parameters
-# )
+start_creation_of_machine_learning_models(
+    config_data_parameters,
+    config_machine_learning_parameters,
+    config_multiple_models_creation_process_parameters
+)
 
-start_bayesian_optimisation_analysis()
+# start_bayesian_optimisation_analysis()
