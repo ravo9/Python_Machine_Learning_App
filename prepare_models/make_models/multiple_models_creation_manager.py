@@ -34,7 +34,6 @@ def start_creation_of_machine_learning_models(
                         # Unpack config_data_parameters
                         columns = config_data["columns"]
                         start_train_date = config_data["start_train_date"]
-                        end_train_date = config_data["end_train_date"]
                         start_test_date = config_data["start_test_date"]
                         end_test_date = config_data["end_test_date"]
                         instrument = config_data["instrument"]
@@ -58,7 +57,6 @@ def start_creation_of_machine_learning_models(
                         make_multiple_variable_model(
                             columns,
                             start_train_date,
-                            end_train_date,
                             start_test_date,
                             end_test_date,
                             instrument,
