@@ -64,8 +64,10 @@ def make_multiple_variable_model(
 
     for i in range(days_into_account, len(fetched_dataset)):
         if fetched_dataset.index[i-days_into_account] < pd.to_datetime(start_test_date).date():
-            x_train.append(scaled_data[i-days_into_account:i])
-            y_train.append(scaled_data[i])
+            # 1450 is a size restriction to compare with the other branch
+            if (len(x_train) < 1450):
+                x_train.append(scaled_data[i-days_into_account:i])
+                y_train.append(scaled_data[i])
         else:
             x_test.append(scaled_data[i-days_into_account:i])
             y_test.append(scaled_data[i])
