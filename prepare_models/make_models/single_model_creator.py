@@ -60,8 +60,13 @@ def make_multiple_variable_model(
 
     # The '0' at the end is to make it 1D array (no reason for 2D)
     for i in range(days_into_account, len(scaled_train_data)):
-      x_train.append(scaled_train_data[i-days_into_account:i, 0])
-      y_train.append(scaled_train_data[i, 0])
+      # x_train.append(scaled_train_data[i-days_into_account:i, 0])
+      # y_train.append(scaled_train_data[i, 0])
+      
+      # 1450 is a size restriction to compare with the other branch
+        if (len(x_train) < 1450):
+            x_train.append(scaled_train_data[i-days_into_account:i, 0])
+            y_train.append(scaled_train_data[i, 0])
 
     # Convert the x_train and y_train into Numpy arrays (to simplify array in array)
     x_train, y_train = np.array(x_train), np.array(y_train)
@@ -109,6 +114,7 @@ def make_multiple_variable_model(
     predictions = model.predict(x_test)
 
     # predictions = concatenate((predictions, x_test[:, :, 1:]), axis=2)
+    # Probably doesn't change anything
     predictions = concatenate((predictions, y_test[:, 1:]), axis=1)
     predictions = scaler.inverse_transform(predictions)
 
