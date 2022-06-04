@@ -36,7 +36,7 @@ def start_creation_of_machine_learning_models(
                         start_train_date = config_data["start_train_date"]
                         start_test_date = config_data["start_test_date"]
                         end_test_date = config_data["end_test_date"]
-                        instrument = config_data["instrument"]
+                        instruments = config_data["instruments"]
 
                         # Unpack config_machine_learning_parameters
                         optimizer_type = config_machineLearning["optimizer_type"]
@@ -59,7 +59,7 @@ def start_creation_of_machine_learning_models(
                             start_train_date,
                             start_test_date,
                             end_test_date,
-                            instrument,
+                            instruments,
                             optimizer_type,
                             loss_function_type,
                             days_into_account,
