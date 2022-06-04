@@ -127,7 +127,7 @@ def make_multiple_variable_model(
 
     average_error = get_average_error(predictions_rescaled, y_test_rescaled)
     print_average_error(average_error)
-    print_rmse(predictions_rescaled, y_test_rescaled)
+    rmse = print_rmse(predictions_rescaled, y_test_rescaled)
 
     direction_prediction_result = get_average_error_direction_prediction(predictions_rescaled, y_test_rescaled)
     # write_result_into_txt_log(output_dir, direction_prediction_result)
@@ -139,22 +139,32 @@ def make_multiple_variable_model(
 
     # save_model(model, output_dir, average_error)
 
-    # write_model_creation_details_into_csv_log(
-    #     modelConcept,
-    #     columns,
-    #     start_train_date,
-    #     end_train_date,
-    #     start_test_date,
-    #     end_test_date,
-    #     instrument,
-    #     output_dir,
-    #     optimizer_type,
-    #     loss_function_type,
-    #     days_into_account,
-    #     epochs_amount,
-    #     average_error,
-    #     random_seed,
-    #     optimizer_learning_rate)
+    write_model_creation_details_into_csv_log(
+        output_dir,
+
+        average_error,
+        rmse,
+        direction_prediction_result,
+
+        epochs_amount,
+        random_seed
+
+        # modelConcept,
+        # columns,
+        # start_train_date,
+        # end_train_date,
+        # start_test_date,
+        # end_test_date,
+        # instrument,
+        # output_dir,
+        # optimizer_type,
+        # loss_function_type,
+        # days_into_account,
+        # epochs_amount,
+        # average_error,
+        # random_seed,
+        # optimizer_learning_rate
+    )
 
     score = direction_prediction_result
     return score

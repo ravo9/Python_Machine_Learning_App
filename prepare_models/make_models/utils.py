@@ -92,6 +92,7 @@ def print_rmse(predictions, y_test):
     print(rmse)
     print("------------------")
     print("")
+    return rmse
 
 
 def print_currently_making_model_info(index, all_models_amount):
