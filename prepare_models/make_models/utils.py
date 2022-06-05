@@ -58,7 +58,7 @@ def get_average_error_direction_prediction(predictions, y_test):
 
     for i in range(0, len(predictions)):
         if i != 0:
-            change_predicted = predictions[i] - predictions[i - 1]
+            change_predicted = predictions[i] - y_test[i - 1]
             change_real = y_test[i] - y_test[i - 1]
             changes_predicted.append(change_predicted)
             changes_real.append(change_real)
