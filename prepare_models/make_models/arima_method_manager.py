@@ -8,21 +8,23 @@ from utils import get_average_error_direction_prediction
 
 def run_arima_method():
 
-    sp500_data = yf.download('^GSPC', start="1980-01-01", end="2021-11-21")
-    sp500_data = sp500_data[['Close']]
+    # stock_prices_data = yf.download('^NDX', start="1986-01-01", end="2022-06-03")
+    # stock_prices_data = yf.download('^NDX', start="1986-01-01", end="2021-11-21")
+    stock_prices_data = yf.download('^GSPC', start="1980-01-01", end="2021-11-21")
+    stock_prices_data = stock_prices_data[['Close']]
 
-    # difs = (sp500_data.shift() - sp500_data) / sp500_data
-    # difs = difs.dropna()
-    # y = difs.Close.values
+    difs = (stock_prices_data.shift() - stock_prices_data) / stock_prices_data
+    difs = difs.dropna()
+    y = difs.Close.values
 
-    sp500_data.dropna()
-    y = sp500_data.Close.values
+    # stock_prices_data.dropna()
+    # y = stock_prices_data.Close.values
 
     best_params = None
     best_result = 0.0
 
-    param_list = [(x, y, z) for x in range(5) for y in range(5) for z in range(5)]
-    # param_list = [(0, 1, 3)]
+    # param_list = [(x, y, z) for x in range(5) for y in range(5) for z in range(5)]
+    param_list = [(0, 2, 3)]
 
     order_index = 0
 
