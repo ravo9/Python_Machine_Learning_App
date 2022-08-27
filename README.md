@@ -12,22 +12,22 @@ DEVELOPMENT NOTES (to be ordered if the project is to be continued):
 
 Machine Learning - Training Speed Comparison:
 
-Test 1 (UNKNOWN SET):
-CPU (Mac Pro) 			7 ms / step
-Colab CPU 			14 ms / step
-Colab TPU 			17 ms / step
+1. Test 1 (UNKNOWN SET):
+	CPU (Mac Pro) 			7 ms / step
+	Colab CPU 			14 ms / step
+	Colab TPU 			17 ms / step
 
-Test 2 (confirmed the same data trained):
-CPU (Mac Pro)			12 ms / step
-GPU (PlaidML; Mac Pro)		77 ms / step
+2. Test 2 (confirmed the same data trained):
+	CPU (Mac Pro)			12 ms / step
+	GPU (PlaidML; Mac Pro)		77 ms / step
 
-Test 3 (same set as in test 2, but with optimizer SGD):
-GPU (tensorflow-metal)		76 ms / step
+3. Test 3 (same set as in test 2, but with optimizer SGD):
+	GPU (tensorflow-metal)		76 ms / step
 
-Test 4 (same set as in 2):
-Colab TPU			23 ms / step
-Colab GPU			8 ms / step
-Colab CPU (no accellerator) 	15 ms / step
+4. Test 4 (same set as in 2):
+	Colab TPU			23 ms / step
+	Colab GPU			8 ms / step
+	Colab CPU (no accellerator) 	15 ms / step
 
 
 Machine Learning App - Current Work Notes:
