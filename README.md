@@ -6,10 +6,11 @@ PURPOSE:
 
 	2. Makes prediction of price per particular instrument per particular day.
 	
+------------------------
 
 DEVELOPMENT NOTES (to be ordered if the project is to be continued):
 
-Machine Learning - Training Speed Comparison
+Machine Learning - Training Speed Comparison:
 
 Test 1 (UNKNOWN SET):
 CPU (Mac Pro) 			7 ms / step
@@ -28,9 +29,8 @@ Colab TPU			23 ms / step
 Colab GPU			8 ms / step
 Colab CPU (no accellerator) 	15 ms / step
 
-------------------------
 
-Machine Learning App - Current Work Notes
+Machine Learning App - Current Work Notes:
 
 1. Make a list of potential parameters that may be optimised with Bayesian.
 
